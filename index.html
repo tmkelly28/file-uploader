@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<body>
+  <form id="myForm">
+    <input type="file" name="image" />
+    <button type="submit">Go</button>
+  </form>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const form = document.getElementById('myForm')
+  // const input = document.getElementsByTagName('input')[0]
+  // input.addEventListener('change', evt => {
+  //   const reader = new FileReader(evt.target.files[0])
+  // })
+  form.addEventListener('submit', evt => {
+    evt.preventDefault()
+    const data = new FormData(document.getElementById('myForm'))
+    axios.post('/upload', data, {
+      headers: {'content-type': 'multipart/form-data'}
+    })
+      .then(() => console.log('hello'))
+})
+</script>
+</html>
+
